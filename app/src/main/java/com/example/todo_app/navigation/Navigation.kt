@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.todo_app.pages.AddData
+import com.example.todo_app.pages.RetrieveData
 
 @Composable
 fun Navigation(modifier: Modifier = Modifier) {
@@ -13,6 +14,9 @@ fun Navigation(modifier: Modifier = Modifier) {
     NavHost(navController, startDestination = NavigationScreen.AddData.name) {
         composable(NavigationScreen.AddData.name) {
             AddData(navController = navController)
+        }
+        composable(NavigationScreen.RetrieveData.name) {
+            RetrieveData(navController = navController)
         }
         // add another navigation
     }
