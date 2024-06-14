@@ -67,6 +67,9 @@ dependencies {
     implementation(libs.coil.kt.coil.compose)
     implementation(libs.firebase.storage)
 
+    // Permission
+    implementation(libs.accompanist.permissions)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
