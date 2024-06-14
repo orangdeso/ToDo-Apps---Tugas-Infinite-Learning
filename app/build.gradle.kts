@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -61,8 +62,10 @@ dependencies {
     implementation(libs.androidx.material3)
 
     // add library
-    implementation("androidx.compose.material:material:1.6.7")
-    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.coil.kt.coil.compose)
+    implementation(libs.firebase.storage)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
