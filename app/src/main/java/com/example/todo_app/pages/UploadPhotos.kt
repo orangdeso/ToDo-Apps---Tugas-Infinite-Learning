@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
@@ -44,14 +45,14 @@ fun UploadPhotos(modifier: Modifier = Modifier, navController: NavController) {
     var uploadFinished by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
-    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        imageUri = uri
-        uploadFinished = false
-    }
+    val launcher =
+        rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            imageUri = uri
+            uploadFinished = false
+        }
 
     LaunchedEffect(uploadFinished) {
         if (uploadFinished) {
-            // Reset imageUri setelah upload selesai
             imageUri = null
             uploadFinished = false
         }
@@ -60,11 +61,12 @@ fun UploadPhotos(modifier: Modifier = Modifier, navController: NavController) {
     val painter: Painter = if (imageUri != null) {
         rememberAsyncImagePainter(imageUri)
     } else {
-        painterResource(id = R.drawable.picture)
+        painterResource(id = R.drawable.image)
     }
 
     Column(
         modifier
+            .fillMaxSize()
             .background(Color.White),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -72,7 +74,7 @@ fun UploadPhotos(modifier: Modifier = Modifier, navController: NavController) {
         Image(
             painter = painter,
             contentDescription = null,
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.None,
             modifier = Modifier
                 .height(250.dp)
                 .width(250.dp)
@@ -85,11 +87,13 @@ fun UploadPhotos(modifier: Modifier = Modifier, navController: NavController) {
         Button(
             onClick = {
                 if (imageUri != null) {
-                    imageUri?.let { uri -> uploadImageToFirebase(uri, context) { success ->
-                        if (success) {
-                            uploadFinished = true
+                    imageUri?.let { uri ->
+                        uploadImageToFirebase(uri, context) { success ->
+                            if (success) {
+                                uploadFinished = true
+                            }
                         }
-                    } }
+                    }
                 } else {
                     Toast.makeText(context, "Select Image From Gallery", Toast.LENGTH_SHORT).show()
                 }

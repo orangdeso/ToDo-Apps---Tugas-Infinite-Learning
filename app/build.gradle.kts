@@ -69,6 +69,7 @@ dependencies {
 
     // Permission
     implementation(libs.accompanist.permissions)
+    implementation(libs.firebase.database.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

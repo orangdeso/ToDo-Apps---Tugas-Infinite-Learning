@@ -31,7 +31,7 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavController) {
     ) {
         Button(
             onClick = {
-                navController.navigate(NavigationScreen.UploadPhotos.name)
+                navController.navigate(NavigationScreen.FormScreen.name)
             },
             shape = RoundedCornerShape(5.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
