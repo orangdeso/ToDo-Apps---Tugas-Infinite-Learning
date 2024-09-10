@@ -68,7 +68,7 @@ dependencies {
     implementation(libs.firebase.storage)
 
     // Permission
-    implementation(libs.accompanist.permissions)
+//    implementation(libs.accompanist.permissions)
     implementation(libs.firebase.database.ktx)
 
     testImplementation(libs.junit)

@@ -13,9 +13,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+<!--    android:name=".data.ScheduleNotificationApplication"-->
 
     <application
-        android:name=".data.ScheduleNotificationApplication"
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -38,9 +39,9 @@
         </activity>
 
         <!--Receiver-->
-        <receiver
-            android:name=".date.ReminderReceiver"
-            android:enabled="true" />
+<!--        <receiver-->
+<!--            android:name=".date.ReminderReceiver"-->
+<!--            android:enabled="true" />-->
     </application>
 
 </manifest>

@@ -157,60 +157,60 @@ fun AlarmScreen(modifier: Modifier = Modifier) {
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
-@Composable
-fun AlarmScreenPreview() {
-    AlarmScreen()
-}
-
-// Set up Schedule Notification
-class ScheduleNotificationApplication : Application() {
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreate() {
-        super.onCreate()
-
-
-        val notificationChannel = NotificationChannel(
-            RMNDR_NOTI_CHNNL_ID,
-            RMNDR_NOTI_CHNNL_NAME,
-            NotificationManager.IMPORTANCE_HIGH
-        )
-
-
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(notificationChannel)
-    }
-}
-
-// Set up Reminder
-class ReminderNotification(private val context: Context) {
-
-    private val notificationManager = context.getSystemService(NotificationManager::class.java)
-
-    fun sendReminderNotification(title: String?) {
-        val notification = NotificationCompat.Builder(context, RMNDR_NOTI_CHNNL_ID)
-            .setContentTitle(title)
-            .setContentText(context.getString(R.string.app.name))
-            .setsmallIcon(R.drawable.ic_launcher_background)
-            .setPriority(NotificationManager.IMPORTANCE_HIGH)
-//            .setStyle(
-//                NotificationCompat.BigPictureStyle()
-//                    .bigPicture(context.bitmapFromResource)
-//            )
-            .setAutoCancel(true)
-            .build()
-
-        notificationManager.notify(RMNDR_NOTI_CHNNL_ID, notification)
-    }
-}
-
-// Set up Reminder Receiver
-class ReminderReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context?, intent: Intent?) {
-        val scheduledExecutorService = context?.let { ReminderNotification(it) }
-        val title: String = intent?.getStringExtra(RMNDR_NOTI_TITLE_KEY) ?: return
-        scheduledExecutorService?.sendReminderNotification(title)
-    }
-}
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Preview(showBackground = true)
+//@Composable
+//fun AlarmScreenPreview() {
+//    AlarmScreen()
+//}
+//
+//// Set up Schedule Notification
+//class ScheduleNotificationApplication : Application() {
+//
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    override fun onCreate() {
+//        super.onCreate()
+//
+//
+//        val notificationChannel = NotificationChannel(
+//            RMNDR_NOTI_CHNNL_ID,
+//            RMNDR_NOTI_CHNNL_NAME,
+//            NotificationManager.IMPORTANCE_HIGH
+//        )
+//
+//
+//        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+//        notificationManager.createNotificationChannel(notificationChannel)
+//    }
+//}
+//
+//// Set up Reminder
+//class ReminderNotification(private val context: Context) {
+//
+//    private val notificationManager = context.getSystemService(NotificationManager::class.java)
+//
+//    fun sendReminderNotification(title: String?) {
+//        val notification = NotificationCompat.Builder(context, RMNDR_NOTI_CHNNL_ID)
+//            .setContentTitle(title)
+//            .setContentText(context.getString(R.string.app.name))
+//            .setsmallIcon(R.drawable.ic_launcher_background)
+//            .setPriority(NotificationManager.IMPORTANCE_HIGH)
+////            .setStyle(
+////                NotificationCompat.BigPictureStyle()
+////                    .bigPicture(context.bitmapFromResource)
+////            )
+//            .setAutoCancel(true)
+//            .build()
+//
+//        notificationManager.notify(RMNDR_NOTI_CHNNL_ID, notification)
+//    }
+//}
+//
+//// Set up Reminder Receiver
+//class ReminderReceiver : BroadcastReceiver() {
+//    override fun onReceive(context: Context?, intent: Intent?) {
+//        val scheduledExecutorService = context?.let { ReminderNotification(it) }
+//        val title: String = intent?.getStringExtra(RMNDR_NOTI_TITLE_KEY) ?: return
+//        scheduledExecutorService?.sendReminderNotification(title)
+//    }
+//}
